@@ -23,6 +23,8 @@
 ;; * define types for custom variables
 ;; * clock in -> go over the goal, get the 'exceeding' -> clock out, file changes, the exceed alert is shown again
 
+(declare-function chronometrist-last "chronometrist-queries")
+
 (defvar chronometrist--timers-list nil)
 
 (defcustom chronometrist-goals-list nil
