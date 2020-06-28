@@ -1,9 +1,9 @@
-;;; chronometrist-goals.el --- Adds support for time-goals to Chronometrist -*- lexical-binding: t; -*-
+;;; chronometrist-goals.el --- Adds support for time goals to Chronometrist -*- lexical-binding: t; -*-
 
 ;; Author: contrapunctus <xmpp:contrapunctus@jabber.fr>
 ;; Maintainer: contrapunctus <xmpp:contrapunctus@jabber.fr>
 ;; Keywords: calendar
-;; Homepage: https://framagit.org/contrapunctus/chronometrist
+;; Homepage: https://github.com/contrapunctus-1/chronometrist
 ;; Package-Requires: ((emacs "25.1") (cl-lib "1.0") (alert "1.2") (chronometrist "0.4.3"))
 ;; Version: 0.1.0
 
