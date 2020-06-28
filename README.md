@@ -7,9 +7,40 @@ You can get `chronometrist-goals` from https://github.com/contrapunctus-1/chrono
 `chronometrist-goals` requires [alert.el](https://github.com/jwiegley/alert) and, of course, [Chronometrist](https://github.com/contrapunctus-1/chronometrist/)
 
 ## Usage
+### Define some goals
+First, define some goals in `chronometrist-goals-list`
+```elisp
+(setq chronometrist-goals-list
+      '((60 "Programming")
+        (30 "Writing" "Composing")
+        (30 "Reading" "Music")))
+```
+The numbers stand for the minutes you want to set as the goal. Observe that you can have any number of tasks after the goal - which is a way of saying you aim to spend that much time on any one of those tasks.
+
+In the above example, we aim to spend 60 minutes on Programming, 30 minutes on either Writing or Composing, and 30 minutes on either Reading or Music.
+
+Note - this variable may be subsumed into `chronometrist`, at an undefinite point in the future.
+
+### Set up hooks
+```elisp
+(add-to-list 'chronometrist-after-in-functions 'chronometrist-goals-run-alert-timers)
+(add-to-list 'chronometrist-after-out-functions 'chronometrist-goals-stop-alert-timers)
+```
+And you're all set! Run `chronometrist` again and marvel at your goal times displayed in the buffer. You will now be notified when you're five minutes away from the goal, when you have reached the goal, and when you have exceeded the goal by five minutes.
 
 ## Customization
-See the Customize groups `chronometrist` and `chronometrist-report` for variables intended to be user-customizable.
+See the Customize groups `chronometrist` for variables intended to be user-customizable.
+
+### Notification style
+You may be interested in customizing alert.el too, especially `alert-default-style` - the author uses -
+```elisp
+(setq alert-default-style 'libnotify)
+```
+
+### Notification times
+The custom variable `chronometrist-goals-alert-functions` is a list of functions which are run by `chronometrist-goals-run-alert-timers`. Each of these functions starts a timer, which notifies you at a certain time.
+
+You can add or remove functions from this list to customize the times at which you are notified. The functions added to the list by default are tiny (7~9 lines) and (hopefully) easy for an interested user to base their own alert functions on.
 
 ## Roadmap/Ideas
 
