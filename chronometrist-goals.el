@@ -23,6 +23,8 @@
 ;; * define types for custom variables
 ;; * clock in -> go over the goal, get the 'exceeding' -> clock out, file changes, the exceed alert is shown again
 
+;;; Code:
+
 (declare-function chronometrist-last "chronometrist-queries")
 
 (defvar chronometrist--timers-list nil)
@@ -116,7 +118,7 @@ SPENT is the time spent on that task (minutes as an integer)."
                       task)))
 
 (defun chronometrist-no-goal-alert (task goal _spent)
-  "If TASK has no GOAL, regularly remind the user of the time they have spent on it.
+  "If TASK has no GOAL, regularly remind the user of the time spent on it.
 TASK is the name of the current task (as a string).
 GOAL is the goal time for that task (minutes as an integer).
 SPENT is the time spent on that task (minutes as an integer)."
