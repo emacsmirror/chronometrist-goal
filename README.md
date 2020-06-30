@@ -34,6 +34,7 @@ With the default configuration, when you start tracking time, you will be notifi
 * are five minutes away from the goal,
 * have reached the goal, and
 * have exceeded the goal by five minutes.
+
 If a task doesn't have a goal, you will be reminded of the time you have spent on it, every fiften minutes.
 
 ## Customization
