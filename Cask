@@ -9,7 +9,7 @@
 (depends-on "emacs" "25.1")
 (depends-on "cl-lib" "1.0")
 (depends-on "alert" "1.2")
-(depends-on "chronometrist" "0.4.3")
+(depends-on "chronometrist" "0.5.0")
 
 (files "chronometrist-goals.el")
 
