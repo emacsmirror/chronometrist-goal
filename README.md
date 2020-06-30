@@ -47,7 +47,7 @@ You can add or remove functions from this list to customize the times at which y
 ## Contributions and contact
 Feedback and MRs very welcome. 🙂
 
-Contact the creator and other Emacs users in the Emacs room on the Jabber network - [xmpp:emacs@salas.suchat.org?join](https://conversations.im/j/emacs@salas.suchat.org) ([web chat](https://inverse.chat/#converse/room?jid=emacs@salas.suchat.org))
+If you have tried using chronometrist/chronometrist-goals, I'd love to hear your experiences! Get in touch with the author and other Emacs users in the Emacs channel on the Jabber network - [xmpp:emacs@salas.suchat.org?join](https://conversations.im/j/emacs@salas.suchat.org) ([web chat](https://inverse.chat/#converse/room?jid=emacs@salas.suchat.org))
 
 (For help in getting started with Jabber, [click here](https://xmpp.org/getting-started/))
 
