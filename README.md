@@ -28,7 +28,13 @@ Note - this variable may be subsumed into `chronometrist`, at an undefinite poin
 (add-to-list 'chronometrist-after-in-functions 'chronometrist-goals-run-alert-timers)
 (add-to-list 'chronometrist-after-out-functions 'chronometrist-goals-stop-alert-timers)
 ```
-And you're all set! Run `chronometrist` again and marvel at your goal times displayed in the buffer. You will now be notified when you're five minutes away from the goal, when you have reached the goal, and when you have exceeded the goal by five minutes.
+And you're all set! Run `chronometrist` again and marvel at your goal times displayed in the buffer.
+
+With the default configuration, when you start tracking time, you will be notified when you
+* are five minutes away from the goal,
+* have reached the goal, and
+* have exceeded the goal by five minutes.
+If a task doesn't have a goal, you will be reminded of the time you have spent on it, every fiften minutes.
 
 ## Customization
 See the Customize groups `chronometrist` for variables intended to be user-customizable.
