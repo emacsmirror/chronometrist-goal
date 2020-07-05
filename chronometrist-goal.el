@@ -5,7 +5,7 @@
 ;; Keywords: calendar
 ;; Homepage: https://github.com/contrapunctus-1/chronometrist
 ;; Package-Requires: ((emacs "25.1") (alert "1.2") (chronometrist "0.5.0"))
-;; Version: 0.1.0
+;; Version: 0.2.0
 
 (require 'chronometrist-queries)
 (require 'alert)
