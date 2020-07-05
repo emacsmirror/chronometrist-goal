@@ -3,7 +3,7 @@
 
 (package
  "chronometrist-goals"
- "0.1.0"
+ "0.2.1"
  "Adds support for time goals to Chronometrist")
 
 (depends-on "emacs" "25.1")

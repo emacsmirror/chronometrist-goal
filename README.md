@@ -51,7 +51,13 @@ The custom variable `chronometrist-goal-alert-functions` is a list of functions 
 
 You can add or remove functions from this list to customize the times at which you are notified. The functions added to the list by default are tiny (7~9 lines) and (hopefully) easy for an interested user to base their own alert functions on.
 
+### More
+A user desiring even greater control may define their own versions of `chronometrist-goals-run-alert-timers` and `chronometrist-goals-stop-alert-timers` (preferably using them as a template) and add them to the desired hooks.
+
 ## Roadmap/Ideas
+* clear notifications on file change event
+* define types for custom variables
+* clock in -> go over the goal, get the 'exceeding' -> clock out, file changes, the exceed alert is shown again
 
 ## Contributions and contact
 Feedback and MRs very welcome. 🙂

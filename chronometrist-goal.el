@@ -5,7 +5,7 @@
 ;; Keywords: calendar
 ;; Homepage: https://github.com/contrapunctus-1/chronometrist
 ;; Package-Requires: ((emacs "25.1") (alert "1.2") (chronometrist "0.5.0"))
-;; Version: 0.2.0
+;; Version: 0.2.1
 
 (require 'chronometrist-queries)
 (require 'alert)
@@ -20,17 +20,9 @@
 ;; For more information, please refer to <https://unlicense.org>
 
 ;;; Commentary:
+;; Add support for time goals to Chronometrist
 
-;;; It is hoped that `chronometrist-goals-alert-functions' provides a good balance
-;;; of flexibility and ease of use for the majority of use cases. A
-;;; user desiring even greater control may define their own versions
-;;; of `chronometrist-goals-run-alert-timers' and `chronometrist-goals-stop-alert-timers' (preferably using
-;;; them as a template) and add them to the desired hooks.
-
-;; TODO -
-;; * clear notifications on file change event
-;; * define types for custom variables
-;; * clock in -> go over the goal, get the 'exceeding' -> clock out, file changes, the exceed alert is shown again
+;; For information on usage and customization, see https://github.com/contrapunctus-1/chronometrist-goal/blob/master/README.md
 
 ;;; Code:
 
