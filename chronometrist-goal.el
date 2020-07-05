@@ -1,4 +1,4 @@
-;;; chronometrist-goals.el --- Adds support for time goals to Chronometrist -*- lexical-binding: t; -*-
+;;; chronometrist-goal.el --- Adds support for time goals to Chronometrist -*- lexical-binding: t; -*-
 
 ;; Author: contrapunctus <xmpp:contrapunctus@jabber.fr>
 ;; Maintainer: contrapunctus <xmpp:contrapunctus@jabber.fr>
@@ -27,10 +27,10 @@
 
 (declare-function chronometrist-last "chronometrist-queries")
 
-(defvar chronometrist--timers-list nil)
+(defvar chronometrist-goal--timers-list nil)
 
-(defcustom chronometrist-goals-list nil
-  "List to specify daily time goals for each task.
+(defcustom chronometrist-goal-list nil
+  "List to specify daily time goal for each task.
 Each element must be in the form (GOAL TASK *).
 
 GOAL is an integer specifying number of minutes.
@@ -44,7 +44,7 @@ like to spend GOAL time on any one of those tasks."
           (list integer :value 15
                 (repeat :inline t string))))
 
-(defun chronometrist-run-at-time (time repeat function &rest args)
+(defun chronometrist-goal-run-at-time (time repeat function &rest args)
   "Like `run-at-time', but append timers to `chronometrist--timers-list'."
   (->> (apply #'run-at-time time repeat function args)
        (list)
@@ -52,7 +52,7 @@ like to spend GOAL time on any one of those tasks."
        (setq chronometrist--timers-list)))
 
 ;; (mapcar #'chronometrist-seconds->alert-string '(0 1 2 59 60 61 62 120 121 122))
-(defun chronometrist-seconds->alert-string (seconds)
+(defun chronometrist-goal-seconds->alert-string (seconds)
   "Convert SECONDS to a string suitable for displaying in alerts.
 SECONDS should be a positive integer."
   (-let [(h m _) (chronometrist-seconds-to-hms seconds)]
@@ -75,7 +75,7 @@ SECONDS should be a positive integer."
               and
               m-str m-unit))))
 
-(defun chronometrist-approach-alert (task goal spent)
+(defun chronometrist-goal-approach-alert (task goal spent)
   "Alert the user when they are 5 minutes away from reaching GOAL for TASK.
 TASK is the name of the current task (as a string).
 GOAL is the goal time for that task (minutes as an integer).
@@ -88,7 +88,7 @@ SPENT is the time spent on that task (minutes as an integer)."
                         (alert (format "5 minutes remain for %s" task)))
                       task)))
 
-(defun chronometrist-complete-alert (task goal spent)
+(defun chronometrist-goal-complete-alert (task goal spent)
   "Alert the user when they have reached the GOAL for TASK.
 TASK is the name of the current task (as a string).
 GOAL is the goal time for that task (minutes as an integer).
@@ -104,7 +104,7 @@ SPENT is the time spent on that task (minutes as an integer)."
                         (alert (format "Goal for %s reached" task)))
                       task)))
 
-(defun chronometrist-exceed-alert (task goal spent)
+(defun chronometrist-goal-exceed-alert (task goal spent)
   "Alert the user when they have exceeded the GOAL for TASK.
 TASK is the name of the current task (as a string).
 GOAL is the goal time for that task (minutes as an integer).
@@ -117,7 +117,7 @@ SPENT is the time spent on that task (minutes as an integer)."
                                :severity 'medium))
                       task)))
 
-(defun chronometrist-no-goal-alert (task goal _spent)
+(defun chronometrist-goal-no-goal-alert (task goal _spent)
   "If TASK has no GOAL, regularly remind the user of the time spent on it.
 TASK is the name of the current task (as a string).
 GOAL is the goal time for that task (minutes as an integer).
@@ -128,7 +128,7 @@ SPENT is the time spent on that task (minutes as an integer)."
                    (lambda (task)
                      ;; We cannot use SPENT here, because that will
                      ;; remain the value it had when we clocked in
-                     ;; (when `chronometrist-goals-run-alert-timers'
+                     ;; (when `chronometrist-goal-run-alert-timers'
                      ;; is run), and we need show the time spent at
                      ;; the time of notification.
                      (alert (format "You have spent %s on %s"
@@ -137,7 +137,7 @@ SPENT is the time spent on that task (minutes as an integer)."
                                     task)))
                    task)))
 
-(defcustom chronometrist-goals-alert-functions
+(defcustom chronometrist-goal-alert-functions
   '(chronometrist-approach-alert
     chronometrist-complete-alert
     chronometrist-exceed-alert
@@ -154,11 +154,11 @@ notify the user.
 
 The timer returned by `run-at-time' should also be appended to
 `chronometrist--timers-list', so that it can later be stopped by
-`chronometrist-goals-stop-alert-timers'. `chronometrist-run-at-time'
+`chronometrist-goal-stop-alert-timers'. `chronometrist-run-at-time'
 will do that for you.
 
 Note - the time spent passed to these functions is calculated
-when `chronometrist-goals-run-alert-timers' is run, i.e. when the
+when `chronometrist-goal-run-alert-timers' is run, i.e. when the
 user clocks in. To obtain the time spent at the time of
 notification, use `chronometrist-task-time-one-day' within the
 function passed to `run-at-time'."
@@ -169,48 +169,48 @@ function passed to `run-at-time'."
 ;; goal (i.e. `(int "task1" "task2" ...)'), and the user has reached
 ;; the goal for one of those tasks, don't display the goal for the
 ;; other associated tasks
-(cl-defun chronometrist-get-goal (task &optional (goals-list chronometrist-goals-list))
-  "Return time goal for TASK from GOALS-LIST.
+(cl-defun chronometrist-goal-get (task &optional (goal-list chronometrist-goal-list))
+  "Return time goal for TASK from GOAL-LIST.
 Return value is minutes as an integer, or nil.
 
-If GOALS-LIST is not supplied, `chronometrist-goals-list' is used."
-  (cl-loop for list in goals-list
+If GOAL-LIST is not supplied, `chronometrist-goal-list' is used."
+  (cl-loop for list in goal-list
            when (member task list)
            return (car list)))
 
-(defun chronometrist-goals-run-alert-timers (task)
+(defun chronometrist-goal-run-alert-timers (task)
   "Run timers to alert the user of the time spent on TASK.
 To use, add this to `chronometrist-after-in-functions', and
-`chronometrist-goals-stop-alert-timers' to
+`chronometrist-goal-stop-alert-timers' to
 `chronometrist-after-out-functions'."
   (let ((goal    (chronometrist-get-goal task))
         (spent   (/ (chronometrist-task-time-one-day task) 60)))
-    (add-hook 'chronometrist-file-change-hook #'chronometrist-goals-on-file-change)
+    (add-hook 'chronometrist-file-change-hook #'chronometrist-goal-on-file-change)
     (mapc (lambda (f)
             (funcall f task goal spent))
-          chronometrist-goals-alert-functions)))
+          chronometrist-goal-alert-functions)))
 
-(defun chronometrist-goals-stop-alert-timers (&optional _task)
+(defun chronometrist-goal-stop-alert-timers (&optional _task)
   "Stop timers to alert the user of the time spent on TASK.
 To use, add this to `chronometrist-after-out-functions', and
-`chronometrist-goals-run-alert-timers' to
+`chronometrist-goal-run-alert-timers' to
 `chronometrist-after-in-functions'."
   (and chronometrist--timers-list ;; in case of start task -> exit Emacs without stopping -> start Emacs -> stop task
        (mapc #'cancel-timer chronometrist--timers-list)
        (setq chronometrist--timers-list   nil)))
 
-(defun chronometrist-goals-on-file-change ()
+(defun chronometrist-goal-on-file-change ()
   "Manage timed alerts when `chronometrist-file' changes."
   (let ((last (chronometrist-last)))
-    (chronometrist-goals-stop-alert-timers)
+    (chronometrist-goal-stop-alert-timers)
     ;; if there's a task running, start timed alerts for it
     (unless (plist-get last :stop)
-      (chronometrist-goals-run-alert-timers (plist-get last :name)))))
+      (chronometrist-goal-run-alert-timers (plist-get last :name)))))
 
-(provide 'chronometrist-goals)
+(provide 'chronometrist-goal)
 
 ;; Local Variables:
-;; nameless-current-name: "chronometrist-goals"
+;; nameless-current-name: "chronometrist-goal"
 ;; End:
 
-;;; chronometrist-goals.el ends here
+;;; chronometrist-goal.el ends here
