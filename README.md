@@ -1,16 +1,16 @@
-# chronometrist-goals
+# chronometrist-goal
 Adds support for time goals to [Chronometrist](https://github.com/contrapunctus-1/chronometrist/)
 
 ## Installation
-You can get `chronometrist-goals` from https://github.com/contrapunctus-1/chronometrist-goals/
+You can get `chronometrist-goal` from https://github.com/contrapunctus-1/chronometrist-goal/
 
-`chronometrist-goals` requires [alert.el](https://github.com/jwiegley/alert) and, of course, [Chronometrist](https://github.com/contrapunctus-1/chronometrist/)
+`chronometrist-goal` requires [alert.el](https://github.com/jwiegley/alert) and, of course, [Chronometrist](https://github.com/contrapunctus-1/chronometrist/)
 
 ## Usage
 ### Define some goals
-First, define some goals in `chronometrist-goals-list`
+First, define some goals in `chronometrist-goal-list`
 ```elisp
-(setq chronometrist-goals-list
+(setq chronometrist-goal-list
       '((60 "Programming")
         (30 "Writing" "Composing")
         (30 "Reading" "Music")))
@@ -25,8 +25,8 @@ Note - this variable may be subsumed into `chronometrist`, at an undefinite poin
 
 ### Set up hooks
 ```elisp
-(add-to-list 'chronometrist-after-in-functions 'chronometrist-goals-run-alert-timers)
-(add-to-list 'chronometrist-after-out-functions 'chronometrist-goals-stop-alert-timers)
+(add-to-list 'chronometrist-after-in-functions 'chronometrist-goal-run-alert-timers)
+(add-to-list 'chronometrist-after-out-functions 'chronometrist-goal-stop-alert-timers)
 ```
 And you're all set! Run `chronometrist` again and marvel at your goal times displayed in the buffer.
 
@@ -47,7 +47,7 @@ You may be interested in customizing alert.el too, especially `alert-default-sty
 ```
 
 ### Notification times
-The custom variable `chronometrist-goals-alert-functions` is a list of functions which are run by `chronometrist-goals-run-alert-timers`. Each of these functions starts a timer, which notifies you at a certain time.
+The custom variable `chronometrist-goal-alert-functions` is a list of functions which are run by `chronometrist-goal-run-alert-timers`. Each of these functions starts a timer, which notifies you at a certain time.
 
 You can add or remove functions from this list to customize the times at which you are notified. The functions added to the list by default are tiny (7~9 lines) and (hopefully) easy for an interested user to base their own alert functions on.
 
@@ -56,7 +56,7 @@ You can add or remove functions from this list to customize the times at which y
 ## Contributions and contact
 Feedback and MRs very welcome. 🙂
 
-If you have tried using chronometrist/chronometrist-goals, I'd love to hear your experiences! Get in touch with the author and other Emacs users in the Emacs channel on the Jabber network - [xmpp:emacs@salas.suchat.org?join](https://conversations.im/j/emacs@salas.suchat.org) ([web chat](https://inverse.chat/#converse/room?jid=emacs@salas.suchat.org))
+If you have tried using chronometrist/chronometrist-goal, I'd love to hear your experiences! Get in touch with the author and other Emacs users in the Emacs channel on the Jabber network - [xmpp:emacs@salas.suchat.org?join](https://conversations.im/j/emacs@salas.suchat.org) ([web chat](https://inverse.chat/#converse/room?jid=emacs@salas.suchat.org))
 
 (For help in getting started with Jabber, [click here](https://xmpp.org/getting-started/))
 
@@ -65,7 +65,7 @@ I dream of a world where all software is liberated - transparent, trustable, and
 
 I'd rather make a request - please do everything you can to help that dream come true. Please Unlicense as much software as you can.
 
-chronometrist-goals is released under your choice of [Unlicense](https://unlicense.org/) or the [WTFPL](http://www.wtfpl.net/).
+chronometrist-goal is released under your choice of [Unlicense](https://unlicense.org/) or the [WTFPL](http://www.wtfpl.net/).
 
 (See files [UNLICENSE](UNLICENSE) and [WTFPL](WTFPL)).
 
