@@ -11,7 +11,7 @@
 (depends-on "alert" "1.2")
 (depends-on "chronometrist" "0.5.0")
 
-(files "chronometrist-goals.el")
+(files "chronometrist-goal.el")
 
 (development
  (depends-on "f")
