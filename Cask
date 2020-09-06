@@ -2,7 +2,7 @@
 (source melpa)
 
 (package
- "chronometrist-goals"
+ "chronometrist-goal"
  "0.2.1"
  "Adds support for time goals to Chronometrist")
 
@@ -10,8 +10,6 @@
 (depends-on "cl-lib" "1.0")
 (depends-on "alert" "1.2")
 (depends-on "chronometrist" "0.5.0")
-
-(files "chronometrist-goal.el")
 
 (development
  (depends-on "f")
