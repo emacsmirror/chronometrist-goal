@@ -46,7 +46,8 @@ like to spend GOAL time on any one of those tasks."
                 (repeat :inline t string))))
 
 (defun chronometrist-goal-run-at-time (time repeat function &rest args)
-  "Like `run-at-time', but append timers to `chronometrist-goal--timers-list'."
+  "Like `run-at-time', but append timers to `chronometrist-goal--timers-list'.
+TIME, REPEAT, FUNCTION, and ARGS are as used in `run-at-time'."
   (->> (apply #'run-at-time time repeat function args)
        (list)
        (append chronometrist-goal--timers-list)
