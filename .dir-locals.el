@@ -1,0 +1,17 @@
+;;; Directory Local Variables
+;;; For more information see (info "(emacs) Directory Variables")
+
+((emacs-lisp-mode . ((nameless-aliases . (("cc" . "chronometrist-common")
+                                          ("cd" . "chronometrist-diary")
+                                          ("ce" . "chronometrist-events")
+                                          ("cg" . "chronometrist-goal")
+                                          ("ck" . "chronometrist-kv")
+                                          ("cm" . "chronometrist-migrate")
+                                          ("cp" . "chronometrist-plist-pp")
+                                          ("cr" . "chronometrist-report")
+                                          ("cs" . "chronometrist-statistics")
+                                          ("cx" . "chronometrist-sexp")
+                                          ("c" . "chronometrist")))
+                     (outline-regexp . ";;;+ ")))
+ (dired-mode . ((dired-omit-mode . t)
+                (dired-omit-extensions . (".html" ".texi")))))
