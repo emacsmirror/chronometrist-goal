@@ -27,11 +27,6 @@ In the above example, we aim to spend 60 minutes on Programming, 30 minutes on e
 
 Note - this variable may be subsumed into `chronometrist`, at an undefinite point in the future.
 
-### Set up hooks
-```elisp
-(add-to-list 'chronometrist-after-in-functions 'chronometrist-goal-run-alert-timers)
-(add-to-list 'chronometrist-after-out-functions 'chronometrist-goal-stop-alert-timers)
-```
 And you're all set! Run `chronometrist` again and marvel at your goal times displayed in the buffer.
 
 With the default configuration, when you start tracking time, you will be notified when you

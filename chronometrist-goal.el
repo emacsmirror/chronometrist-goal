@@ -223,6 +223,22 @@ ENTRY must be a valid element in the list specified by
 FORMAT should be a vector (see `tabulated-list-format')."
   (vconcat format `[("Target" 3 t)]))
 
+(defun chronometrist-goal-setup ()
+  "Add `chronometrist-goal' functions to `chronometrist' hooks."
+  (add-to-list 'chronometrist-entry-transformers       #'chronometrist-goal-entry-transformer)
+  (add-to-list 'chronometrist-list-format-transformers #'chronometrist-goal-list-format-transformer)
+  (add-hook 'chronometrist-after-in-functions  #'chronometrist-goal-run-alert-timers)
+  (add-hook 'chronometrist-after-out-functions #'chronometrist-goal-stop-alert-timers))
+
+(defun chronometrist-goal-teardown ()
+  "Remove `chronometrist-goal' functions from `chronometrist' hooks."
+  (setq chronometrist-entry-transformers
+        (remove #'chronometrist-goal-entry-transformer chronometrist-entry-transformers)
+        chronometrist-list-format-transformers
+        (remove #'chronometrist-goal-list-format-transformer chronometrist-list-format-transformers))
+  (remove-hook 'chronometrist-after-in-functions  #'chronometrist-goal-run-alert-timers)
+  (remove-hook 'chronometrist-after-out-functions #'chronometrist-goal-stop-alert-timers))
+
 (define-minor-mode chronometrist-goal-minor-mode
   "Toggle `chronometrist-goal-minor-mode'.
 With a prefix argument ARG, enable
@@ -231,14 +247,7 @@ it otherwise. If called from Lisp, enable the mode if ARG is
 omitted or nil."
   nil nil nil
   ;; when being enabled/disabled, `chronometrist-goal-minor-mode' will already be t/nil here
-  (if chronometrist-goal-minor-mode
-      (progn
-        (add-to-list 'chronometrist-entry-transformers       #'chronometrist-goal-entry-transformer)
-        (add-to-list 'chronometrist-list-format-transformers #'chronometrist-goal-list-format-transformer))
-    (setq chronometrist-entry-transformers
-          (remove #'chronometrist-goal-entry-transformer chronometrist-entry-transformers)
-          chronometrist-list-format-transformers
-          (remove #'chronometrist-goal-list-format-transformer chronometrist-list-format-transformers))))
+  (if chronometrist-goal-minor-mode (chronometrist-goal-setup) (chronometrist-goal-teardown)))
 
 (provide 'chronometrist-goal)
 
