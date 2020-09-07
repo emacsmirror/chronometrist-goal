@@ -6,7 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 ### Changed
-* Package now defines a minor mode, `chronometrist-goal-minor-mode`
+* Package now defines a minor mode, `chronometrist-goal-minor-mode`.
+* Hooks are automatically added when the minor-mode function is called, reducing the configuration required for new users.
 
 ## [0.2.1] - 2020-07-06
 ### Fixed
