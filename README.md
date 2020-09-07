@@ -7,8 +7,12 @@ You can get `chronometrist-goal` from https://github.com/contrapunctus-1/chronom
 `chronometrist-goal` requires [alert.el](https://github.com/jwiegley/alert) and, of course, [Chronometrist](https://github.com/contrapunctus-1/chronometrist/)
 
 ## Usage
-### Define some goals
-First, define some goals in `chronometrist-goal-list`
+First, hook `chronometrist-goal` to `chronometrist` -
+```elisp
+(add-hook 'chronometrist-mode-hook 'chronometrist-goal-minor-mode)
+```
+
+Then, define some goals in `chronometrist-goal-list`
 ```elisp
 (setq chronometrist-goal-list
       '((60 "Programming")

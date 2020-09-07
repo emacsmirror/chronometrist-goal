@@ -209,6 +209,37 @@ To use, add this to `chronometrist-after-out-functions', and
     (unless (plist-get last :stop)
       (chronometrist-goal-run-alert-timers (plist-get last :name)))))
 
+;;;; minor mode
+(defun chronometrist-goal-entry-transformer (entry)
+  "Add goal information to the return value of `chronometrist-entries'.
+ENTRY must be a valid element in the list specified by
+  `tabulated-list-entries'."
+  (-let* (((task vector) entry)
+          (goal (aif (chronometrist-goal-get task) (format "% 4d" it) "")))
+    (list task (vconcat vector `[,goal]))))
+
+(defun chronometrist-goal-list-format-transformer (format)
+  "Add a goal column to the return value of `tabulated-list-format'.
+FORMAT should be a vector (see `tabulated-list-format')."
+  (vconcat format `[("Target" 3 t)]))
+
+(define-minor-mode chronometrist-goal-minor-mode
+  "Toggle `chronometrist-goal-minor-mode'.
+With a prefix argument ARG, enable
+`chronometrist-goal-minor-mode' if ARG is positive, and disable
+it otherwise. If called from Lisp, enable the mode if ARG is
+omitted or nil."
+  nil nil nil
+  ;; when being enabled/disabled, `chronometrist-goal-minor-mode' will already be t/nil here
+  (if chronometrist-goal-minor-mode
+      (progn
+        (add-to-list 'chronometrist-entry-transformers       #'chronometrist-goal-entry-transformer)
+        (add-to-list 'chronometrist-list-format-transformers #'chronometrist-goal-list-format-transformer))
+    (setq chronometrist-entry-transformers
+          (remove #'chronometrist-goal-entry-transformer chronometrist-entry-transformers)
+          chronometrist-list-format-transformers
+          (remove #'chronometrist-goal-list-format-transformer chronometrist-list-format-transformers))))
+
 (provide 'chronometrist-goal)
 
 ;; Local Variables:
