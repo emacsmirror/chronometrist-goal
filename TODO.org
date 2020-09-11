@@ -1,0 +1,15 @@
+* Certain [66%]
+1. [X] User defines targets for tasks
+2. [X] Chronometrist displays targets column
+3. [-] Notify user when
+   + [ ] approaching target (e.g. -5 minutes)
+   + [ ] target completed
+   + [ ] exceeding target (target+5)
+   + [X] More flexible way to define alerts.
+   + [X] If time goals are defined and there is a task without a goal, just remind the user every 15 minutes of the time they've spent on it
+     - [X] Needs an even more flexible way to define alerts...
+   + [-] Handle manual file changes; on file change -
+     - [ ] clearing existing notifications
+     - [X] if last expression has a :stop value, stop alert timers
+   + [ ] Also take time spent so far into account (e.g. don't start approach or complete alerts again if time has been exceeded and we're starting the task again despite that)
+4. [ ] no-goal-alert - show both current interval and time spent today (it's a little alarming to see "you've spent 2 hours on X" for something you clocked into five minutes ago.)
