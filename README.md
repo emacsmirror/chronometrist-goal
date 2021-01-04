@@ -21,9 +21,7 @@ Then, define some goals in `chronometrist-goal-list`
 ```
 The numbers stand for the minutes you want to set as the goal.
 
-Observe that you can have any number of tasks after the goal - which is a way of saying you aim to spend that much time on any *one* of the tasks that follow.
-
-In the above example, we aim to spend 60 minutes on Programming, 30 minutes on either Writing or Composing, and 30 minutes on either Reading or Music.
+Observe that you can have any number of tasks after the goal - which is a way of saying you aim to spend that much time on any *one* of the tasks that follow. In the above example, we aim to spend 60 minutes on Programming, 30 minutes on either Writing or Composing, and 30 minutes on either Reading or Music.
 
 Note - this variable may be subsumed into `chronometrist`, at an undefinite point in the future.
 
