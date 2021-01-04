@@ -4,7 +4,7 @@
 ;; Maintainer: contrapunctus <xmpp:contrapunctus@jabber.fr>
 ;; Keywords: calendar
 ;; Homepage: https://github.com/contrapunctus-1/chronometrist
-;; Package-Requires: ((emacs "25.1") (alert "1.2") (chronometrist "0.5.0"))
+;; Package-Requires: ((emacs "25.1") (alert "1.2") (chronometrist "0.6.0"))
 ;; Version: 0.2.1
 
 (require 'chronometrist-queries)
