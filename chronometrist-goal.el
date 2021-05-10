@@ -3,7 +3,7 @@
 ;; Author: contrapunctus <xmpp:contrapunctus@jabber.fr>
 ;; Maintainer: contrapunctus <xmpp:contrapunctus@jabber.fr>
 ;; Keywords: calendar
-;; Homepage: https://github.com/contrapunctus-1/chronometrist
+;; Homepage: https://tildegit.org/contrapunctus/chronometrist-goal
 ;; Package-Requires: ((emacs "25.1") (alert "1.2") (chronometrist "0.7.0"))
 ;; Version: 0.2.1
 
@@ -22,7 +22,7 @@
 ;;; Commentary:
 ;; Add support for time goals to Chronometrist
 
-;; For information on usage and customization, see https://github.com/contrapunctus-1/chronometrist-goal/blob/master/README.md
+;; For information on usage and customization, see https://tildegit.org/contrapunctus/chronometrist-goal#usage
 
 ;;; Code:
 

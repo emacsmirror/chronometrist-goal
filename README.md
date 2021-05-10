@@ -1,10 +1,10 @@
 # chronometrist-goal
-Adds support for time goals to [Chronometrist](https://github.com/contrapunctus-1/chronometrist/)
+Adds support for time goals to [Chronometrist](https://tildegit.org/contrapunctus/chronometrist)
 
 ## Installation
-You can get `chronometrist-goal` from https://github.com/contrapunctus-1/chronometrist-goal/
+You can get `chronometrist-goal` from <https://tildegit.org/contrapunctus/chronometrist-goal>
 
-`chronometrist-goal` requires [alert.el](https://github.com/jwiegley/alert) and, of course, [Chronometrist](https://github.com/contrapunctus-1/chronometrist/)
+`chronometrist-goal` requires [alert.el](https://github.com/jwiegley/alert) and, of course, [Chronometrist](https://tildegit.org/contrapunctus/chronometrist)
 
 ## Usage
 First, hook `chronometrist-goal` to `chronometrist` -
